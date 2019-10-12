@@ -3,6 +3,7 @@ import {Container, ListGroup, ListGroupItem, Button} from 'reactstrap';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import PropTypes from 'prop-types';
 import './rides.css';
+import RideItem from './RideItem';
 
 class Rides extends Component {
   constructor() {
@@ -63,13 +64,18 @@ class Rides extends Component {
           }
 
           if(!this.props.filterValue){
-            return(<ListGroupItem key={ride.id}>
+            /*return(<ListGroupItem key={ride.id}>
               <div>{ride.name}</div>
               <div>{ride.college}</div>
               <div>{months[month]} {day} {year}</div>
               <div>{hour}:{minute} {ampm}</div>
               <div>{ride.email}</div>
+<<<<<<< HEAD
             </ListGroupItem>);
+=======
+            </ListGroupItem>);*/
+            return(<RideItem ride={ride} month={month} day={day} year={year} hour={hour} minute={minute} ampm={ampm}></RideItem>);
+>>>>>>> upstream/master
           }
           else{
             //console.log("collegeValue: " + this.props.collegeValue);
@@ -88,13 +94,14 @@ class Rides extends Component {
             }
 
             if(this.props.collegeValue == ride.college && similarTime){
-              return(<ListGroupItem key={ride.id}>
+              /*return(<ListGroupItem key={ride.id}>
                 <div>{ride.name}</div>
                 <div>{ride.college}</div>
                 <div>{months[month]} {day} {year}</div>
                 <div>{hour}:{minute} {ampm}</div>
                 <div>{ride.email}</div>
-              </ListGroupItem>);
+              </ListGroupItem>);*/
+              return(<RideItem ride={ride} month={month} day={day} year={year} hour={hour} minute={minute} ampm={ampm}></RideItem>);
             }
             else{
               return(<div></div>);

@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Rides from './components/Rides';
 import InputBar from './components/InputBar';
+//import RideModal from './components/RideModal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {

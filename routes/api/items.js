@@ -24,8 +24,6 @@ router.post('/', (req, res) => {
         email: req.body.email
     });
 
-    console.log(req.body.name);
-
     newItem.save().then(item => res.json(item));
 });
 
