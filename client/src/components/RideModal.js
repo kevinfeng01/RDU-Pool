@@ -54,11 +54,19 @@ class RideModal extends Component {
                     <ModalBody>
                         <Form onSubmit={this.onSubmit}>
                             <FormGroup>
-                                <Label for='message'>Message</Label>
+                                <Label for="name">Name</Label>
+                                <Input type="name" name="name" id="name" placeholder="Enter your name..." />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="email">Email</Label>
+                                <Input type="email" name="email" id="email" placeholder="Enter your email..." />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for='message'>Message *Your name and email will be sent to {this.props.name}.</Label>
                                 <Input
-                                    type='text'
-                                    name='name'
-                                    id='item'
+                                    type='textarea'
+                                    name='text'
+                                    id='message'
                                     placeholder="Type your message..."
                                     onChange={this.onChange}
                                 />
