@@ -8,7 +8,8 @@ export default class InputBar extends Component {
     state = {
         date: new Date(),
         name: "",
-        college: "UNC Chapel Hill"
+        college: "UNC Chapel Hill",
+        email: "Enter Email"
     }
 
     onDateChange = (d) => {
@@ -52,6 +53,11 @@ export default class InputBar extends Component {
                     <FormGroup className="col-3">
                         <Label>Name</Label>
                         <Input type="name" name="name" value={this.state.name} onChange={e => this.setState({ name: e.target.value })}/>
+                    </FormGroup>
+
+                    <FormGroup className="col-3">
+                        <Label>email</Label>
+                        <Input type="email" name="email" value={this.state.email} onChange={e => this.setState({ email: e.target.value })}/>
                     </FormGroup>
 
                     <FormGroup className="col-2">
