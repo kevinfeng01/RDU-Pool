@@ -20,7 +20,8 @@ router.post('/', (req, res) => {
     const newItem = new Item({
         name: req.body.name,
         college: req.body.college,
-        date: req.body.date
+        date: req.body.date,
+        email: req.body.email
     });
 
     console.log(req.body.name);

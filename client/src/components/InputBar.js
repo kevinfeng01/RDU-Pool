@@ -9,7 +9,7 @@ export default class InputBar extends Component {
         date: new Date(),
         name: "",
         college: "UNC Chapel Hill",
-        email: "Enter Email"
+        email: ""
     }
 
     onDateChange = (d) => {
@@ -31,13 +31,8 @@ export default class InputBar extends Component {
             body: JSON.stringify({
                 name: this.state.name,
                 college: this.state.college,
-                date: this.state.date
-                /*month: this.state.month,
-                day: this.state.day,
-                year: this.state.year,
-                hour: this.state.hour,
-                minute: this.state.minute,
-                ampm: this.state.ampm*/
+                date: this.state.date,
+                email: this.state.email, 
             })
         }).then(res => res.json())
         .then(data => console.log(data))
@@ -56,8 +51,8 @@ export default class InputBar extends Component {
                     </FormGroup>
 
                     <FormGroup className="col-3">
-                        <Label>email</Label>
-                        <Input type="email" name="email" value={this.state.email} onChange={e => this.setState({ email: e.target.value })}/>
+                        <Label>Email</Label>
+                        <Input type="email" email="email" value={this.state.email} onChange={e => this.setState({ email: e.target.value })}/>
                     </FormGroup>
 
                     <FormGroup className="col-2">

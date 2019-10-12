@@ -14,7 +14,12 @@ const ItemSchema = new Schema({
     date: {
         type: Date,
         default: Date.now
+    },
+    email: {
+        type: String,
+        required: true
     }
+
     /*month: {
         type: String,
         required: true

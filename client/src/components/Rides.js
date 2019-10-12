@@ -68,6 +68,7 @@ class Rides extends Component {
               <div>{ride.college}</div>
               <div>{months[month]} {day} {year}</div>
               <div>{hour}:{minute} {ampm}</div>
+              <div>{ride.email}</div>
             </ListGroupItem>);
           }
           else{
@@ -92,6 +93,7 @@ class Rides extends Component {
                 <div>{ride.college}</div>
                 <div>{months[month]} {day} {year}</div>
                 <div>{hour}:{minute} {ampm}</div>
+                <div>{ride.email}</div>
               </ListGroupItem>);
             }
             else{
