@@ -13,8 +13,7 @@ export default class RideItem extends Component {
               <div>{this.props.ride.college}</div>
               <div>{months[this.props.month]} {this.props.day} {this.props.year}</div>
               <div>{this.props.hour}:{this.props.minute} {this.props.ampm}</div>
-              <div>{this.props.ride.email}</div>
-              <RideModal name={this.props.ride.name}></RideModal>
+              <RideModal name={this.props.ride.name} emailReceiver={this.props.ride.email}></RideModal>
             </ListGroupItem>
         )
     }

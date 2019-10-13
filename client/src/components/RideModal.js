@@ -15,7 +15,8 @@ class RideModal extends Component {
     state = {
         modal: false,
         name: "",
-        email: "",
+        emailSender: "",
+        emailReceiver: "",
         message: ""
     }
 
@@ -34,11 +35,13 @@ class RideModal extends Component {
 
         console.log("Email sent!");
 
-        const {name, email, message} = this.state;
+        const emailReceiver = this.props.emailReceiver;
+        const {name, emailSender, message} = this.state;
 
         const form = await axios.post('/api/form', {
             name,
-            email,
+            emailReceiver,
+            emailSender,
             message
         })
 
@@ -68,7 +71,7 @@ class RideModal extends Component {
                             </FormGroup>
                             <FormGroup>
                                 <Label for="email">Email</Label>
-                                <Input onChange={this.onChange} type="email" name="email" id="email" placeholder="Enter your email..." />
+                                <Input onChange={this.onChange} type="email" name="emailSender" id="email" placeholder="Enter your email..." />
                             </FormGroup>
                             <FormGroup>
                                 <Label for='message'>Message *Your name and email will be sent to {this.props.name}.</Label>
