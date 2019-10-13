@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import {
     Button,
     Modal,
@@ -13,7 +14,9 @@ import {
 class RideModal extends Component {
     state = {
         modal: false,
-        name: ''
+        name: "",
+        email: "",
+        message: ""
     }
 
     toggle = () => {
@@ -26,12 +29,18 @@ class RideModal extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-    onSubmit = (e) => {
+    onSubmit = async (e) => {
         e.preventDefault();
 
-        const newItem = {
-            name: this.state.name
-        }
+        console.log("Email sent!");
+
+        const {name, email, message} = this.state;
+
+        const form = await axios.post('/api/form', {
+            name,
+            email,
+            message
+        })
 
         //Close modal
         this.toggle();
@@ -55,17 +64,18 @@ class RideModal extends Component {
                         <Form onSubmit={this.onSubmit}>
                             <FormGroup>
                                 <Label for="name">Name</Label>
-                                <Input type="name" name="name" id="name" placeholder="Enter your name..." />
+                                <Input onChange={this.onChange} type="name" name="name" id="name" placeholder="Enter your name..." />
                             </FormGroup>
                             <FormGroup>
                                 <Label for="email">Email</Label>
-                                <Input type="email" name="email" id="email" placeholder="Enter your email..." />
+                                <Input onChange={this.onChange} type="email" name="email" id="email" placeholder="Enter your email..." />
                             </FormGroup>
                             <FormGroup>
                                 <Label for='message'>Message *Your name and email will be sent to {this.props.name}.</Label>
                                 <Input
+                                    onChange={this.onChange}
                                     type='textarea'
-                                    name='text'
+                                    name='message'
                                     id='message'
                                     placeholder="Type your message..."
                                     onChange={this.onChange}
