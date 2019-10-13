@@ -28,6 +28,7 @@ app.use('/api/items', items);
 app.post('/api/form', (req, res) => {
   nodemailer.createTestAccount((err, account) => {
     const htmlEmail = `
+      <h1>${req.body.name} wants to pool!</h1>
       <h3>Contact Details</h3>
       <ul>
         <li>Name: ${req.body.name}</li>
@@ -41,15 +42,15 @@ app.post('/api/form', (req, res) => {
       host: 'smtp.gmail.com',
       post: 587,
       auth: {
-        user: 'wuandy22@gmail.com',
-        pass: 'Woulard69'
+        user: 'PoolPartyDuke@gmail.com',
+        pass: 'ChodeMuncher69'
       }
     })
 
     let mailOptions = {
-      from: 'wuandy22@gmail.com',
+      from: 'PoolPartyDuke@gmail.com',
       to: req.body.emailReceiver,
-      replyTo: 'wuandy22@gmail.com',
+      replyTo: 'PoolPartyDuke@gmail.com',
       subject: 'Pool Party Notification',
       text: req.body.message,
       html: htmlEmail
@@ -65,6 +66,16 @@ app.post('/api/form', (req, res) => {
     })
   })
 })
+
+// Serve static assets if in production
+if(process.env.NODE_ENV === 'production'){
+  //Set static folder
+  app.use(express.static('client/build'));
+
+  app.get('*', (req,res) => {
+      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 const port = process.env.PORT || 5000;
 

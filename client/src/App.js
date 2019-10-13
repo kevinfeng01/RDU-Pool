@@ -47,10 +47,10 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Pool Party</h1>
+          <h1 className="App-title mb-4">Pool Party</h1>
           <InputBar filterList={this.filterList} resetList={this.resetList} updateSearch={this.updateSearch}/>
         </header>
-        <Rides filterValue={this.state.filter} dateValue={this.state.date} collegeValue={this.state.college} className="mt-3"/>
+        <Rides className="Rides" filterValue={this.state.filter} dateValue={this.state.date} collegeValue={this.state.college}/>
       </div>
     );
   }
