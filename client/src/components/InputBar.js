@@ -1,21 +1,41 @@
 import React, { Component } from 'react'
-import { InputGroup, InputGroupAddon, InputGroupText, Input, Button, Form, FormGroup, Label, FormText } from 'reactstrap';
+import { InputGroup, InputGroupAddon, InputGroupText, Input, Button, Form, FormGroup, Label, Popover, PopoverHeader, PopoverBody, FormText } from 'reactstrap';
 import DateTimePicker from 'react-datetime-picker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './inputBar.css';
 
 export default class InputBar extends Component {
 
-    state = {
+    constructor(props) {
+        super(props);
+    
+        this.toggle = this.toggle.bind(this);
+        this.state = {
+            date: new Date(),
+            name: "",
+            college: "UNC Chapel Hill",
+            email: "",
+            popoverOpen: false
+        };
+      }
+    
+    /*state = {
         date: new Date(),
         name: "",
         college: "UNC Chapel Hill",
-        email: ""
-    }
+        email: "",
+        popoverOpen: false
+    }*/
 
     onDateChange = (d) => {
         this.setState({date: d});
     }
+
+    toggle() {
+        this.setState({
+            popoverOpen: !this.state.popoverOpen
+        });
+    } 
 
     onFormSubmit = (e) => {
         e.preventDefault();
@@ -78,6 +98,15 @@ export default class InputBar extends Component {
                     </div>
                 
                     <div className = "row mt-3">
+                        <Button id="Popover1" onClick={this.toggle}>
+                            Help
+                        </Button>
+                        <Popover placement="bottom" isOpen={this.state.popoverOpen} target="Popover1" toggle={this.toggle}>
+                            <PopoverHeader>Popover Title</PopoverHeader>
+                            <PopoverBody>Filter: Filters to list entries with similar flight time on date from same school
+                                Submit: Submits your data into the database so that others can view
+                            </PopoverBody>
+                        </Popover>
                         <Button type="button" onClick={() => this.props.filterList(this.state.college,this.state.date)} className="button col-4 m-auto">Filter</Button>
                         <Button type="submit" className="button col-4 m-auto">Submit</Button>
                         <Button type="button" onClick={this.props.resetList} className="button col-4 m-auto">Reset</Button>
