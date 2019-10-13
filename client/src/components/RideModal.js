@@ -17,7 +17,8 @@ class RideModal extends Component {
         name: "",
         emailSender: "",
         emailReceiver: "",
-        message: ""
+        message: "",
+        valid: false,
     }
 
     toggle = () => {
@@ -28,27 +29,25 @@ class RideModal extends Component {
 
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
+        //this.setState({valid: (this.state.name.length * this.state.emailSender.length * this.state.message.length == 0) ? false : true});
     }
 
     onSubmit = async (e) => {
-        //e.preventDefault();
 
         console.log("Email sent!");
 
         const emailReceiver = this.props.emailReceiver;
         const {name, emailSender, message} = this.state;
-
-        if(name != "" && emailSender != "" && message != ""){
-            const form = await axios.post('/api/form', {
-                name,
-                emailReceiver,
-                emailSender,
-                message
-            })
-        }
-
+        const form = await axios.post('/api/form', {
+            name,
+            emailReceiver,
+            emailSender,
+            message
+        })
+    
+        
         //Close modal
-        this.toggle();
+        //this.toggle();
     }
 
     render(){
@@ -64,6 +63,7 @@ class RideModal extends Component {
                     isOpen={this.state.modal}
                     toggle={this.toggle}
                 >
+                    
                     <ModalHeader toggle={this.toggle}>Send an email to {this.props.name}</ModalHeader>
                     <ModalBody>
                         <Form onSubmit={this.onSubmit}>
@@ -86,9 +86,11 @@ class RideModal extends Component {
                                     onChange={this.onChange}
                                 />
                                 <Button
+                                    disabled={this.state.name.length * this.state.emailSender.length * this.state.message.length == 0}
                                     color='dark'
                                     style={{marginTop: '2rem'}}
                                     block
+
                                 >
                                     Send</Button>
                             </FormGroup>
